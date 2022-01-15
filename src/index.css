@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-Poppins bg-background-color text-font-color;
+  }
+  h1 {
+    @apply font-bold text-2xl 2xs:text-3xl xs:text-4xl md:text-5xl lg:text-6xl xl:text-7xl;
+  }
+  h2 {
+    @apply text-xs 2xs:text-sm xs:text-base lg:text-lg xl:text-xl 2xl:text-2xl;
+  }
+  h3 {
+    @apply text-xs xs:text-sm sm:text-base xl:text-lg;
+  }
+  h4 {
+    @apply text-sm 2xs:text-base xs:text-lg lg:text-xl;
+  }
+  p, td, th {
+    @apply text-xs 2xs:text-sm xs:text-base lg:text-lg landscape:text-xs sm:landscape:text-sm lg:landscape:text-base xl:landscape:text-lg;
+  }
+  td{
+    @apply px-1
+  }
+}
