@@ -5,7 +5,6 @@ import { UserContext } from "../context/UserContext";
 import jwt_decode from "jwt-decode";
 import { API } from "../config/api";
 import { Alert } from "../components/basic";
-import axios from "axios";
 
 const Login = () => {
   const [state, dispatch] = useContext(UserContext);
@@ -46,7 +45,6 @@ const Login = () => {
 
       const body = JSON.stringify(form);
       const response = await API.post("/login", body, config);
-      console.log(response);
 
       if (response.data.status === "success") {
         const token = response.data.user.token;
