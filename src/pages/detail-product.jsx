@@ -1,6 +1,6 @@
 import { Button } from "../components/basic";
 import { useParams } from "react-router-dom";
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { API } from "../config/api";
 import { Alert } from "../components/basic";
@@ -9,6 +9,8 @@ const DetailProduct = () => {
   const { id } = useParams();
 
   const [product, setProduct] = useState({});
+
+  const [state, dispatch] = useContext(UserContext);
 
   const [message, setMessage] = useState(null);
 
@@ -36,18 +38,35 @@ const DetailProduct = () => {
 
   const handleAddToCart = async () => {
     try {
+      if (!state.isLogin) {
+        setMessage(
+          <Alert
+            message="You mus login to buy product"
+            type="failed"
+            className="w-full text-center"
+          />
+        );
+        return removeMessage();
+      }
+
       const response = await API.post("/cart", { productId: id });
-      // socket.emit("cart changed", {
-      //   buyerId: state.user.id,
-      // });
+
       if (response.data.status === "success") {
         setMessage(
-          <Alert message="Success to add product to your cart" type="success" className="w-full text-center" />
+          <Alert
+            message="Success to add product to your cart"
+            type="success"
+            className="w-full text-center"
+          />
         );
         removeMessage();
       } else {
         setMessage(
-          <Alert message="Failed to add product to your cart" type="failed" className="w-full text-center" />
+          <Alert
+            message="Failed to add product to your cart"
+            type="failed"
+            className="w-full text-center"
+          />
         );
         removeMessage();
       }
@@ -59,7 +78,7 @@ const DetailProduct = () => {
   return (
     <section className="flex flex-col justify-center items-center landscape:flex-row min-h-[90vh]">
       <img
-        src="/images/1.jpeg"
+        src={product.image}
         alt="p"
         className="w-[75%] py-4 md:w-[50%] landscape:w-[45%] xl:landscape:w-[55%]"
       />
