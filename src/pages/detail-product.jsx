@@ -79,7 +79,7 @@ const DetailProduct = () => {
     <section className="flex flex-col justify-center items-center landscape:flex-row min-h-[90vh]">
       <img
         src={product.image}
-        alt="p"
+        alt="product image"
         className="w-[75%] py-4 md:w-[50%] landscape:w-[45%] xl:landscape:w-[55%]"
       />
       <div className="w-[90%] landscape:px-4 flex flex-col items-center landscape:items-start h-full justify-center">
