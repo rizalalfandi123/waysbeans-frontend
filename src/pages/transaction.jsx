@@ -48,35 +48,75 @@ const Transaction = () => {
       </div>
       {filter === 0
         ? transactions.map((value, index) => {
-            return <TransactionCard key={index} transaction={value} />;
+            return (
+              <TransactionCard
+                key={index}
+                transaction={value}
+                link={
+                  value.status === "waiting payment"
+                    ? `/checkout/${value.id}`
+                    : `/transaction/${value.id}`
+                }
+              />
+            );
           })
         : filter === 1
         ? transactions.map((value, index) => {
             if (value.status === "waiting payment") {
-              return <TransactionCard key={index} transaction={value} />;
+              return (
+                <TransactionCard
+                  key={index}
+                  transaction={value}
+                  link={`/checkout/${value.id}`}
+                />
+              );
             }
           })
         : filter === 2
         ? transactions.map((value, index) => {
             if (value.status === "waiting approve") {
-              return <TransactionCard key={index} transaction={value} />;
+              return (
+                <TransactionCard
+                  key={index}
+                  transaction={value}
+                  link={`/transaction/${value.id}`}
+                />
+              );
             }
           })
         : filter === 3
         ? transactions.map((value, index) => {
             if (value.status === "on the way") {
-              return <TransactionCard key={index} transaction={value} />;
+              return (
+                <TransactionCard
+                  key={index}
+                  transaction={value}
+                  link={`/transaction/${value.id}`}
+                />
+              );
             }
           })
         : filter === 4
         ? transactions.map((value, index) => {
             if (value.status === "success") {
-              return <TransactionCard key={index} transaction={value} />;
+              return (
+                <TransactionCard
+                  key={index}
+                  transaction={value}
+                  link={`/transaction/${value.id}`}
+                />
+              );
             }
           })
         : transactions.map((value, index) => {
             if (value.status === "cancel") {
-              return <TransactionCard key={index} transaction={value} />;
+              return (
+                <TransactionCard
+                  key={index}
+                  transaction={value}
+                  link={`/transaction/${value.id}`}
+                />
+              );
             }
           })}
     </section>
@@ -91,6 +131,5 @@ const filterData = [
   { id: 4, title: "Success" },
   { id: 5, title: "Cancel" },
 ];
-
 
 export default Transaction;

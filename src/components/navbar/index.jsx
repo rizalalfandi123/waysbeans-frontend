@@ -88,15 +88,15 @@ const NavBar = () => {
         )}
       </div>
       {state.isLogin ? (
-        state.user.role === "user" ? (
-          <UserProfilePicture logout={logout} />
-        ) : (
+        state.user.role === "admin" ? (
           <Button
             className="h-[80%] px-5 md:px-10 landscape:px-10"
             onClick={() => logout()}
           >
             <h3>Logout</h3>
           </Button>
+        ) : (
+          <UserProfilePicture logout={logout} />
         )
       ) : (
         <Link to="/login">
@@ -113,10 +113,11 @@ const UserProfilePicture = ({ logout }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   return (
     <div className="relative inline-block h-full group">
-      <div
-        className="h-full aspect-square rounded-full bg-fuchsia-400"
+      <img
+        src="/images/default-profile.png"
+        className="h-full aspect-square rounded-full object-cover"
         onClick={() => setShowDropdown(!showDropdown)}
-      ></div>
+      />
       <div
         className={classNames(
           "absolute right-[50%] top-[110%] z-20",

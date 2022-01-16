@@ -95,7 +95,7 @@ const Register = () => {
         <label htmlFor="password" className="block py-2 w-full">
           <span className="block font-medium">Password</span>
           <input
-            type="text"
+            type="password"
             id="password"
             className="border-[1px] w-full px-2 py-3 rounded-lg mt-1 focus:outline-none focus:border-primary-color focus:ring-1 focus:ring-primary-color"
             value={password}

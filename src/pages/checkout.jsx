@@ -29,7 +29,8 @@ const Checkout = () => {
   const handleChange = (e) => {
     setForm({
       ...form,
-      [e.target.name]: e.target.value,
+      [e.target.name]:
+        e.target.type === "file" ? e.target.files : e.target.value,
     });
   };
 
@@ -73,7 +74,7 @@ const Checkout = () => {
         },
       });
 
-      console.log(response)
+      console.log(response);
 
       if (response.data.status === "success") {
         setMessage(
@@ -95,8 +96,13 @@ const Checkout = () => {
   return (
     <section className="w-full flex flex-col items-center">
       {transaction && <TransactionCard transaction={transaction} />}
-      <form onSubmit={handleSubmit} className=" border-[1px] w-full md:w-[80%] lg:w-[70%] xl:w-[65%] rounded-xl px-4 py-8 shadow-md">
-        <h1 className="w-full mb-[1rem]" onClick={() => setShowModal(true)}>Ship to</h1>
+      <form
+        onSubmit={handleSubmit}
+        className=" border-[1px] w-full md:w-[80%] lg:w-[70%] xl:w-[65%] rounded-xl px-4 py-8 shadow-md"
+      >
+        <h1 className="w-full mb-[1rem]" onClick={() => setShowModal(true)}>
+          Ship to
+        </h1>
         {message && message}
         <label htmlFor="name" className="block py-2 w-full">
           <span className="block font-medium">Fullname</span>
@@ -131,14 +137,14 @@ const Checkout = () => {
             onChange={handleChange}
           />
         </label>
-        <label htmlFor="post" className="block py-2 w-full">
+        <label htmlFor="postCode" className="block py-2 w-full">
           <span className="block font-medium">Post Code</span>
           <input
-            type="text"
-            id="post"
+            type="number"
+            id="postCode"
             className="border-[1px] w-full px-2 py-3 rounded-lg mt-1 focus:outline-none focus:border-primary-color focus:ring-1 focus:ring-primary-color"
             value={postCode}
-            name="post"
+            name="postCode"
             onChange={handleChange}
           />
         </label>
@@ -159,7 +165,6 @@ const Checkout = () => {
             type="file"
             id="image"
             className="border-[1px] w-full px-2 py-3 rounded-lg mt-1 focus:outline-none focus:border-primary-color focus:ring-1 focus:ring-primary-color file:bg-primary-color file:text-white file:rounded-xl file:px-6 file:border-0 file:py-3 font-semibold"
-            value={image}
             name="image"
             onChange={handleChange}
           />
@@ -181,7 +186,12 @@ const Checkout = () => {
         <div className="w-full h-full flex justify-center items-center">
           <div className=" border-2 border-primary-color rounded-md flex flex-col p-2 bg-background-color w-[75vw] max-w-[25rem]">
             <p>{message}</p>
-            <Button className="w-full h-[3.5rem] mt-4" onClick={() => setShowModal(false)}>OK</Button>
+            <Button
+              className="w-full h-[3.5rem] mt-4"
+              onClick={() => setShowModal(false)}
+            >
+              OK
+            </Button>
           </div>
         </div>
       </div>

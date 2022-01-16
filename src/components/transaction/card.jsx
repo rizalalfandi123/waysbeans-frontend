@@ -1,10 +1,14 @@
 import toRupiah from "@develoka/angka-rupiah-js";
 import classNames from "classnames";
+import { useNavigate } from "react-router-dom";
 
-const TransactionCard = ({ transaction }) => {
+const TransactionCard = ({ transaction, link }) => {
   const { orders, shippingCost, totalPrice, subTotal, status } = transaction;
+
+  const navigate = useNavigate();
+
   return (
-    <div className="w-full mb-4 flex items-center shadow-md border-[1px] rounded-lg md:rounded-xl md:w-[80%] lg:w-[70%] xl:w-[65%]">
+    <div className="w-full cursor-pointer mb-4 flex items-center shadow-md border-[1px] rounded-lg md:rounded-xl md:w-[80%] lg:w-[70%] xl:w-[65%]" onClick={() => navigate(link)}>
       <img
         src="/images/1.jpeg"
         alt="product"

@@ -7,8 +7,8 @@ import Shop from "../pages/shop";
 import Login from "../pages/login";
 import Register from "../pages/register";
 import Checkout from "../pages/checkout";
-import DetailProduct from "../pages/detail";
-
+import DetailProduct from "../pages/detail-product";
+import DetailTransaction from "../pages/detail-transaction";
 
 const UserRoutes = () => {
   return (
@@ -19,6 +19,7 @@ const UserRoutes = () => {
         <Route path="product/:id" element={<DetailProduct />}/>
         <Route path="shop" element={<Shop />} />
         <Route path="transaction" element={<Transaction />} />
+        <Route path="transaction/:id" element={<DetailTransaction />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         {/* <Route path="profile/:id" element={<Profile />}></Route>*/}

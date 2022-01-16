@@ -5,6 +5,7 @@ import toRupiah from "@develoka/angka-rupiah-js";
 import { Button } from "../components/basic";
 import { useNavigate } from "react-router-dom";
 import { Alert } from "../components/basic";
+import AlertPage from "./alert";
 
 const Cart = () => {
   const [cart, setCart] = useState({});
@@ -91,7 +92,7 @@ const Cart = () => {
       })}
       {message && message}
       {cart.carts?.length < 1 ? (
-        <h1>Kosong</h1>
+        <AlertPage message="Your cart is empty" action="Shop Now" actionLink="/shop" />
       ) : (
         <div className="py-4 w-full px-2 mt-4 flex items-center justify-between shadow-md border-[1px] rounded-lg md:rounded-xl md:w-[80%] lg:w-[70%] xl:w-[65%]">
           <h3>Sub Total : {cart.subTotal && toRupiah(cart.subTotal)}</h3>
