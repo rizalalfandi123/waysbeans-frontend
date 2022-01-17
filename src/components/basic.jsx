@@ -20,7 +20,7 @@ const Alert = ({ message, type, className }) => {
     <div
       role="alert"
       className={classNames(
-        "p-4 mb-4 text-sm  rounded-lg",
+        "p-4 mb-4 text-sm rounded-lg",
         type === "success" ? "bg-green-200" : "bg-red-200",
         className
       )}

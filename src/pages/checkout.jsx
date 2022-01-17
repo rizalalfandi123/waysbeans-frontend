@@ -74,28 +74,32 @@ const Checkout = () => {
         },
       });
 
-      console.log(response);
-
       if (response.data.status === "success") {
         setMessage(
           "Thank you for ordering in us, please wait 1 x 24 hours to verify you order"
         );
 
-        // setShowModal(true);
+        setShowModal(true);
       } else {
         setMessage(response.data.message);
-        // setShowNotificationModal(true);
+
+        setShowModal(true);
       }
     } catch (error) {
       setMessage(error);
-      // setShowNotificationModal(true);
-      console.log(error);
+
+      setShowModal(true);
     }
   };
 
   return (
     <section className="w-full flex flex-col items-center">
-      {transaction && <TransactionCard transaction={transaction} />}
+      {transaction && (
+        <TransactionCard
+          transaction={transaction}
+          link={`/transaction/${transaction.id}`}
+        />
+      )}
       <form
         onSubmit={handleSubmit}
         className=" border-[1px] w-full md:w-[80%] lg:w-[70%] xl:w-[65%] rounded-xl px-4 py-8 shadow-md"
@@ -103,7 +107,6 @@ const Checkout = () => {
         <h1 className="w-full mb-[1rem]" onClick={() => setShowModal(true)}>
           Ship to
         </h1>
-        {message && message}
         <label htmlFor="name" className="block py-2 w-full">
           <span className="block font-medium">Fullname</span>
           <input
@@ -188,7 +191,10 @@ const Checkout = () => {
             <p>{message}</p>
             <Button
               className="w-full h-[3.5rem] mt-4"
-              onClick={() => setShowModal(false)}
+              onClick={() => {
+                setShowModal(false);
+                navigate("/transaction");
+              }}
             >
               OK
             </Button>

@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { API } from "../config/api";
 import { Alert } from "../components/basic";
+import toRupiah from "@develoka/angka-rupiah-js";
 
 const DetailProduct = () => {
   const { id } = useParams();
@@ -86,7 +87,7 @@ const DetailProduct = () => {
         {message && message}
         <h1 className="mb-4">{product && product.name}</h1>
         <h4 className="font-semibold mb-2 text-center landscape:text-left">
-          {product && product.price}
+          {product.price && toRupiah(product.price)}
           <br />
           stock: {product && product.stock}
         </h4>

@@ -35,20 +35,22 @@ const IncomeCard = ({ transaction, getTransactions }) => {
   return (
     <div className="w-full flex flex-col items-center p-2 mb-4 shadow-md rounded-lg border-2 max-w-screen-lg">
       {status === "waiting approve" ? (
-        <div className="grid grid-cols-2 content-center gap-x-2">
+        <div className="flex flex-col justify-center items-center">
           <h2 className="font-bold tracking-wider">{status}</h2>
-          <Button
-            className="text-font-color bg-green-200"
-            onClick={() => handleApprove()}
-          >
-            Approve
-          </Button>
-          <Button
-            className="text-font-color bg-red-200"
-            onClick={() => handleCancel()}
-          >
-            Cancel
-          </Button>
+          <div className="flex mt-2">
+            <Button
+              className="text-font-color bg-green-200 mx-2"
+              onClick={() => handleApprove()}
+            >
+              Approve
+            </Button>
+            <Button
+              className="text-font-color bg-red-200 mx-2"
+              onClick={() => handleCancel()}
+            >
+              Cancel
+            </Button>
+          </div>
         </div>
       ) : (
         <h2 className="font-bold tracking-wider">{status}</h2>
